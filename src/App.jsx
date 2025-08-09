@@ -6,26 +6,25 @@ function App() {
   const [tasks, setTasks] = useState(
     JSON.parse(localStorage.getItem("tasks")) || []
   );
-
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
-  useEffect(() => {
-    const fetchTasks = async () => {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/todos?_limit=10",
-        {
-          method: "GET",
-        }
-      );
+  // useEffect(() => {
+  //   const fetchTasks = async () => {
+  //     const response = await fetch(
+  //       "https://jsonplaceholder.typicode.com/todos?_limit=10",
+  //       {
+  //         method: "GET",
+  //       }
+  //     );
 
-      const data = await response.json();
+  //     const data = await response.json();
 
-      setTasks(data);
-    };
-    // fetchTasks();
-  }, []);
+  //     setTasks(data);
+  //   };
+  //   fetchTasks();
+  // }, []);
 
   function onTaskCompleted(taskId) {
     const updatedTasks = tasks.map((task) => {
