@@ -4,12 +4,13 @@ import Button from "./Button";
 
 function Tasks(props) {
   const navigate = useNavigate();
+  const maxTitleLength = 40;
 
   function handleNavigateToDetails(task) {
     const queryParams = new URLSearchParams();
     queryParams.set("title", task.title);
     queryParams.set("description", task.description);
-    navigate(`/tasks?title=${queryParams.toString()}`);
+    navigate(`/tasks?${queryParams.toString()}`);
   }
   return (
     <div className="pb-4">
@@ -18,12 +19,14 @@ function Tasks(props) {
           <li key={task.id} className="flex">
             <button
               onClick={() => props.onTaskCompleted(task.id)}
-              className={`bg-slate-400 text-left w-full flex gap-2 text-white p-2 rounded-md ${
+              className={`bg-slate-400 cursor-pointer text-left w-full flex gap-2 text-white p-2 rounded-md ${
                 task.isCompleted && "line-through"
               }`}
             >
               {task.isCompleted && <CheckIcon />}
-              {task.title}
+              {task.title.length > maxTitleLength
+                ? task.title.substring(0, maxTitleLength) + "..."
+                : task.title}
             </button>
             <Button onClick={() => handleNavigateToDetails(task)}>
               <ChevronRightIcon />

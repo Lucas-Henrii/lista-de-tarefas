@@ -15,7 +15,7 @@ function TasksPage() {
           </h1>
           <button
             onClick={() => navigate(-1)}
-            className="absolute left-0 top-0 bottom-0 text-slate-100"
+            className="absolute bg-slate-400 rounded-md p-1 cursor-pointer left-0 top-0 bottom-0 text-slate-100"
           >
             <ChevronLeftIcon />
           </button>
